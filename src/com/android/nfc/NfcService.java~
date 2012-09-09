@@ -1989,12 +1989,11 @@ public class NfcService extends Application implements DeviceHostListener {
             POLLING_MODE = Settings.System.getInt(resolver,
                     Settings.System.NFC_POLLING_MODE, SCREEN_STATE_ON_UNLOCKED);
         }
-    }
 
-    /** Returns true if NFC sounds are currently disabled */
-    boolean isNfcSoundDisabled() {
-        return Settings.System.getInt(mContext.getContentResolver(),
+	/** Returns true if NFC sounds are currently disabled */
+    	boolean isNfcSoundDisabled() {
+            return Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.TOGGLE_NFC_SOUNDS, 0) == 1;
+    	}
     }
-
 }

@@ -744,6 +744,10 @@ public class NfcService implements DeviceHostListener {
                 Log.w(TAG, "Not playing sound when NFC is disabled");
                 return;
             }
+	    else if (isNfcSoundDisabled()) {
+		Log.w(TAG, "NFC sounds are disabled.");
+		return;
+	    }
             switch (sound) {
                 case SOUND_START:
                     mSoundPool.play(mStartSound, 1.0f, 1.0f, 0, 0, 1.0f);
@@ -2111,5 +2115,13 @@ public class NfcService implements DeviceHostListener {
             POLLING_MODE = Settings.System.getInt(resolver,
                     Settings.System.NFC_POLLING_MODE, SCREEN_STATE_ON_UNLOCKED);
         }
+    }
+
+    /**
+     * Returns true if NFC sounds are disabled
+     */
+    boolean isNfcSoundDisabled() {
+	return Settings.System.getInt(mContext.getContentResolver(),
+	    Settings.System.TOGGLE_NFC_SOUNDS, 0) == 1;
     }
 }
